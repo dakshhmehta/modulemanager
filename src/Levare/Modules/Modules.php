@@ -244,6 +244,14 @@ class Modules {
 		foreach($this->modules as $name => $path)
 		{
 			$name = strtolower($name);
+			
+			// Allow module's view to be overrided in application folder
+			// eg: app/view/modules/{{modulename}}
+			$moduleAppViewPath = app_path()."/views/modules/{$name}";
+			if (App::make('files')->isDirectory($moduleAppViewPath))
+			{
+			    App::make('view')->addNamespace($name, $moduleAppViewPath);
+			}
 			App::make('view')->addNamespace($name, $path.'/views');
 			App::make('config')->addNamespace($name, $path.'/config');
 			App::make('translator')->addNamespace($name, $path.'/lang');

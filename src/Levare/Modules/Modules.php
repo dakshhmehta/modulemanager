@@ -257,5 +257,15 @@ class Modules {
 			App::make('translator')->addNamespace($name, $path.'/lang');
 		}
 	}
+	
+	/**
+	 * Lists all modules
+	 *
+	 * @return void
+	 */
+	private function getAll()
+	{
+		return $this->modules;
+	}
 
 }
